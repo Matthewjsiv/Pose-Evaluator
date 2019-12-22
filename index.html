@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pose Evaluation Demo</title>
+    <style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: black;
+    }
+
+    .footer-text {
+        max-width: 600px;
+        text-align: center;
+        margin: auto;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .footer-text, .dg {
+        display: none;
+      }
+    }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="loading">
+        Loading the model...
+    </div>
+
+    <div id='main' style='display:none; float: left;'>
+        <video id="video" playsinline style=" -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        display: none;
+        ">
+        </video>
+        <canvas id="output" />
+    </div>
+    
+    <div style="float: left;padding: 35px;width: 400px">
+    	
+    		<p> This demo evaluates how well a webcam can see you. 
+    		<br>It works by first using posenet to extract keypoints (body parts) from its view. 
+    		<br>It then displays a view ability score ranging from 1-10. 
+    		<br>This score is calculated by multiplying various features of the overall pose by different weights. 
+    		<br>These features currently take into account: 
+    		<ul>
+  				<li>Number of total keypoints detected</li>
+  				<li>Number of facial keypoints detected</li>
+  				<li>Whether both shoulders are visible</li>
+  				<li>Whether both hips are visible</li>
+  				<li>Horizontal distance between shoulders</li>
+  				<li>Horizontal distance between hips</li>
+			</ul>
+    		</p>
+    	
+    </div>
+    
+    <!--
+    <div class="footer">
+        <div class="footer-text">
+            <p>
+                PoseNet runs with either a <strong>single-pose</strong> or <strong>multi-pose</strong> detection algorithm. The single person pose detector is faster and more accurate but requires only one subject present in the image.
+                <br>
+                <br> The <strong>output stride</strong> and <strong>image scale factor</strong> have the largest effects on accuracy/speed. A <i>higher</i> output stride results in lower accuracy but higher speed. A <i>higher</i> image scale factor results in higher accuracy but lower speed.
+                <br>
+                <br> This is a Pure Javascript implementation of: <a href="https://github.com/tensorflow/tfjs-models/tree/master/posenet" target="_blank" rel="noopener">PoseNet</a>.
+                <br>
+                <br> Thank you <a href="https://js.tensorflow.org" target="_blank" rel="noopener">TensorFlow.js</a> for your flexible and intuitive APIs.
+            </p>
+        </div>
+    </div> -->
+    <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.2/build/dat.gui.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+    <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
+    
+    <script src="demo_util.js"></script>
+    <script src="stats.min.js "></script>
+    <script src="camera.js"></script>
+</body>
+
+</html>
